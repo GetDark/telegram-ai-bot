@@ -1,7 +1,0 @@
-{
-  "reads": {},
-  "first_mutation_seen": {
-    "bot/groq_client.py": "2026-06-29T14:39:42.227Z"
-  },
-  "checked": {}
-}
