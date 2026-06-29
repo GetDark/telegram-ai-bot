@@ -1,64 +1,105 @@
-# Telegram AI Bot 🤖
+[English](#english) | [Русский](#русский)
 
-Telegram-бот с искусственным интеллектом на базе **Llama 3.1** (через Groq API).  
-Помнит контекст диалога, отвечает на любые вопросы.
+---
 
-![Python](https://img.shields.io/badge/Python-3.12-blue)
-![aiogram](https://img.shields.io/badge/aiogram-3.x-blue)
-![Groq](https://img.shields.io/badge/AI-Llama%203.1-green)
+<a name="english"></a>
+# telegram-ai-bot
 
-## Возможности
+A Telegram bot powered by Groq API (Llama 3.1) with persistent per-user conversation history. Deployed via Docker.
 
-- 💬 Отвечает на вопросы через Llama 3.1 (Groq)
-- 🧠 Помнит историю диалога (последние 10 сообщений)
-- 🗑️ `/clear` — очистить историю
-- 🐳 Деплой одной командой через Docker
+## Features
 
-## Быстрый старт
+- Answers messages using **Llama 3.1** via Groq API
+- Maintains **conversation history** per user across messages
+- Commands:
+  - `/start` — welcome message and instructions
+  - `/help` — show available commands
+  - `/clear` — clear conversation history
 
-### 1. Получи API ключи
-
-- **Telegram токен** — [@BotFather](https://t.me/BotFather)
-- **Groq API Key** — [console.groq.com](https://console.groq.com)
-
-### 2. Настрой окружение
+## Quick Start
 
 ```bash
+git clone https://github.com/GetDark/telegram-ai-bot.git
+cd telegram-ai-bot
+
 cp .env.example .env
-```
+nano .env  # set TELEGRAM_TOKEN and GROQ_API_KEY
 
-Заполни `.env`:
-
-```
-TELEGRAM_TOKEN=your_telegram_bot_token
-GROQ_API_KEY=your_groq_api_key
-```
-
-### 3. Запусти через Docker
-
-```bash
 docker compose up -d
 ```
 
-### 3. Или локально
+## Environment Variables
 
-```bash
-pip install -r requirements.txt
-python -m bot.main
+| Variable | Description |
+|----------|-------------|
+| `TELEGRAM_TOKEN` | Bot token from [@BotFather](https://t.me/BotFather) |
+| `GROQ_API_KEY` | API key from [console.groq.com](https://console.groq.com) |
+
+## Project Structure
+
+```
+bot/
+├── main.py          # Entry point, bot startup
+├── handlers.py      # Message and command handlers
+├── groq_client.py   # Groq API client
+└── storage.py       # Conversation history (SQLite)
 ```
 
-## Команды бота
+## Tech Stack
 
-| Команда | Описание |
-|---------|----------|
-| `/start` | Начать диалог |
-| `/clear` | Очистить историю |
-| `/help` | Справка |
+- Python 3 / aiogram 3
+- Groq API (Llama 3.1)
+- SQLite (conversation history)
+- Docker + Docker Compose
 
-## Стек
+---
 
-- **Python 3.12**
-- **aiogram 3.x** — Telegram Bot API
-- **Groq** — быстрый inference Llama 3.1
-- **SQLite** — хранение истории диалогов
-- **Docker** — деплой
+<a name="русский"></a>
+# telegram-ai-bot
+
+Telegram-бот на базе Groq API (Llama 3.1) с постоянной историей диалога для каждого пользователя. Деплой через Docker.
+
+## Возможности
+
+- Отвечает на сообщения с помощью **Llama 3.1** через Groq API
+- Сохраняет **историю диалога** для каждого пользователя
+- Команды:
+  - `/start` — приветствие и инструкции
+  - `/help` — список доступных команд
+  - `/clear` — очистить историю диалога
+
+## Быстрый старт
+
+```bash
+git clone https://github.com/GetDark/telegram-ai-bot.git
+cd telegram-ai-bot
+
+cp .env.example .env
+nano .env  # задать TELEGRAM_TOKEN и GROQ_API_KEY
+
+docker compose up -d
+```
+
+## Переменные окружения
+
+| Переменная | Описание |
+|------------|----------|
+| `TELEGRAM_TOKEN` | Токен бота от [@BotFather](https://t.me/BotFather) |
+| `GROQ_API_KEY` | API-ключ с [console.groq.com](https://console.groq.com) |
+
+## Структура проекта
+
+```
+bot/
+├── main.py          # Точка входа, запуск бота
+├── handlers.py      # Обработчики сообщений и команд
+├── groq_client.py   # Клиент Groq API
+└── storage.py       # История диалога (SQLite)
+```
+
+## Технологический стек
+
+- Python 3 / aiogram 3
+- Groq API (Llama 3.1)
+- SQLite (история диалога)
+- Docker + Docker Compose
